@@ -20,7 +20,16 @@
 				this.images = content;
 				
 				this.activeImage = this.props.path.replaceAll(" ", "_") + content[0];
-				var imgs = content.map((i)=> "<img class='object-scale-down w-auto h-[800px] lg:w-full lg:h-auto z-40 cursor-pointer' src='" + this.props.path.replaceAll(" ", "_") + i + "' >" );
+				
+				var imgs = content.map(
+					(i) => 
+					`<img 
+					class='object-scale-down w-auto h-[800px] lg:w-full lg:h-auto z-40 cursor-pointer' 
+					src='${this.props.path.replaceAll(' ', '_') + i}' 
+					onclick='${this.self}.update_active("${this.props.path.replaceAll(' ', '_') + i}")' 
+					>`
+				);
+
 				this.update_active(this.activeImage)
 				console.log(imgs);
 				this.lib.innerHTML += imgs;
