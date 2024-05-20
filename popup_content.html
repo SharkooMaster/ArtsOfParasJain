@@ -1,0 +1,36 @@
+<template rapid-name="popup_content">
+	<script>
+		class popup_content extends Component
+		{
+			onComponentLoad()
+			{
+				this.is_visible = false;
+			}
+
+			set_content(content)
+			{
+				console.log(content)
+				this.lib = this.getChild("lib");
+				content = JSON.parse(content);
+				
+				var imgs = content.map((i)=> "<img src='" + this.props.path.replaceAll(" ", "_") + i + "' >" );
+				console.log(imgs);
+				this.lib.innerHTML += imgs;
+			}
+
+			set_is_visible()
+			{
+				this.is_visible = !this.is_visible;
+				var popup = this.getChild("popup");
+				popup.style.display = (this.is_visible) ? "flex" : "none";
+			}
+		}
+	</script>
+
+	<div child-id="popup" class="fixed w-screen h-full bg-[#00000040] top-0 hidden items-center justify-center">
+		<div class="absolute w-full h-full z-1" onclick="self.set_is_visible()"></div>
+
+		<div class="z-2 w-[400px] h-[540px] bg-white rounded-xl" child-id="lib">
+		</div>
+	</div>
+</template>

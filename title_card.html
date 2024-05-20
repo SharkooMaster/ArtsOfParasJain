@@ -1,7 +1,30 @@
 <template rapid-name="title_card">
-	<div class="w-[400px] h-[280px] bg-zinc-800 rounded-lg flex items-center justify-center">
-		<div class="flex items-center justify-center w-full h-full bg-[#FFFFFF90]">
+	<div include-html="popup_content.html"></div>
+	<script>
+		class title_card extends Component
+		{
+			onComponentLoad()
+			{
+				this.popup_html = this.getChild("popup");
+				this.popup_html.innerHTML = this.props.content;
+				console.log(this.props);
+			}
+
+			trigger()
+			{
+				this.popup = this.getChildInstance("popup");
+				this.popup.set_content(this.props.content)
+				this.popup.set_is_visible();
+			}
+		}
+	</script>
+
+	<div class="w-[400px] h-[280px] bg-zinc-800 rounded-lg flex items-center justify-center" onclick="self.trigger()">
+		<div class="flex items-center justify-center w-full h-full bg-[#FFFFFF90] flex-wrap text-center">
 			<p class="text-[24px]">{title}</p>
 		</div>
 	</div>
+
+	<popup_content child-id="popup" path="./portfolio/{title}/">
+	</popup_content>
 </template>
