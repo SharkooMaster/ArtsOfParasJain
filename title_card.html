@@ -5,6 +5,10 @@
 		{
 			onComponentLoad()
 			{
+				this.card = this.getChild("card")
+				var content = JSON.parse(this.props.content);
+				var thumbnail = ("url('./portfolio/" + this.props.title + "/" + content[0] + "')").replaceAll(" ", "_");
+				this.card.style.backgroundImage = thumbnail;
 				this.popup_html = this.getChild("popup");
 				this.popup_html.innerHTML = this.props.content;
 				console.log(this.props);
@@ -19,9 +23,10 @@
 		}
 	</script>
 
-	<div class="w-[400px] h-[280px] bg-zinc-800 rounded-lg flex items-center justify-center" onclick="self.trigger()">
-		<div class="flex items-center justify-center w-full h-full bg-[#FFFFFF90] flex-wrap text-center">
-			<p class="text-[24px]">{title}</p>
+	<div child-id="card" onclick="self.trigger()"
+	class="mx-4 md:mx-0 lg:mx-0 w-full h-[360px] md:w-[380px] md:h-[280px] lg:w-[780px] lg:h-[410px] bg-slate-400 bg-center bg-cover cursor-pointer">
+		<div class="bg-[#3F3F3F8A] w-full h-full flex items-center justify-center">
+			<p class="text-[28px] text-white font-bold">{title}</p>
 		</div>
 	</div>
 
