@@ -16,7 +16,7 @@ var pieces = [];
 
 function loadFolders() {
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', 'portfolio/', true);
+	xhr.open('GET', 'ArtsOfParasJain/portfolio/', true);
 	xhr.onload = function() {
 		if (xhr.status === 200) {
 			var parser = new DOMParser();
@@ -27,7 +27,7 @@ function loadFolders() {
 				var href = link.getAttribute('href');
 				var piece = new portfolioPiece(href, pieces.length);
 				pieces.push(piece);
-				loadFilesInFolder("portfolio/" + href, piece);
+				loadFilesInFolder("ArtsOfParasJain/portfolio/" + href, piece);
 			});
 		} else {
 			console.error("Failed to load directory listing. Status:", xhr.status);

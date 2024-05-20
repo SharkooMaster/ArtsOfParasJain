@@ -7,7 +7,7 @@
 			{
 				this.card = this.getChild("card")
 				var content = JSON.parse(this.props.content);
-				var thumbnail = ("url('./portfolio/" + this.props.title + "/" + content[0] + "')").replaceAll(" ", "_");
+				var thumbnail = ("url('/ArtsOfParasJain/portfolio/" + this.props.title + "/" + content[0] + "')").replaceAll(" ", "_");
 				this.card.style.backgroundImage = thumbnail;
 				this.popup_html = this.getChild("popup");
 				this.popup_html.innerHTML = this.props.content;
@@ -30,6 +30,6 @@
 		</div>
 	</div>
 
-	<popup_content child-id="popup" path="./portfolio/{title}/">
+	<popup_content child-id="popup" path="/ArtsOfParasJain/portfolio/{title}/">
 	</popup_content>
 </template>
